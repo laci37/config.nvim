@@ -190,6 +190,22 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Custom keymaps
+vim.keymap.set('n', '<leader>ct', ':checktime<CR>')
+vim.keymap.set('n', '<F3>', 'i<C-R>=strftime("%Y-%m-%d %a %H:%M")<CR><Esc>')
+vim.keymap.set('i', '<F3>', '<C-R>=strftime("%Y-%m-%d %a %H:%M")<CR>')
+vim.keymap.set('n', '<leader>h', ':set hlsearch!<CR>')
+vim.keymap.set('n', '--', ':cn<CR>')
+-- disable delete word in insertmode
+vim.keymap.set('i', '<C-w>', '<esc><C-w>')
+
+vim.cmd 'iabbrev retrun return'
+vim.cmd 'iabbrev cleint client'
+vim.cmd 'iabbrev Cleint Client'
+vim.cmd 'iabbrev finnally finally'
+vim.cmd 'iabbrev duoble double'
+vim.cmd 'iabbrev heigth height'
+vim.cmd 'iabbrev Heigth Height'
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -238,6 +254,22 @@ require('lazy').setup({
   -- Use `opts = {}` to force a plugin to be loaded.
   --
 
+  'ervandew/supertab',
+  'vim-scripts/YankRing.vim',
+  'tpope/vim-surround',
+  {
+    'xolox/vim-misc',
+    lazy = false,
+    priority = 1000,
+  },
+  {
+    'xolox/vim-notes',
+    init = function()
+      vim.g.notes_directories = { '/home/centi/notes' }
+    end,
+  },
+  'goerz/jupytext.vim',
+  'jupyter-vim/jupyter-vim',
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
   --    require('gitsigns').setup({ ... })
@@ -839,13 +871,13 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
+    'srcery-colors/srcery-vim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'srcery'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
